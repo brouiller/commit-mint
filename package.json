@@ -1,0 +1,27 @@
+{
+  "name": "commit-mint",
+  "version": "1.0.0",
+  "description": "Keep your GitHub contribution map green by scheduling commits",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brouiller/commit-mint.git"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "scheduler"
+  ],
+  "author": "Bradley Kimbrell and Morgan Riley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brouiller/commit-mint/issues"
+  },
+  "homepage": "https://github.com/brouiller/commit-mint#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
