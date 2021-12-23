@@ -7,8 +7,8 @@ const init = () => {
 };
 
 //checks to see if the commands batch file exits, if it doesn't, it writes the file
-const doesBatchFileExist = () => {
-  const commands = `@echo off\nnode index.js`;
+async function doesBatchFileExist() {
+  const commands = `@echo off\nnode index.js\nexit`;
   fs.stat("runNode.bat", function (err, stat) {
     if (err !== null) {
       fs.writeFile("runNode.bat", commands, (err) => {
@@ -20,13 +20,15 @@ const doesBatchFileExist = () => {
         }
       });
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint task" /TR "runNode.bat" /ST 11:00`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00`
       );
+      infiniteMonkey();
+      commitMint();
     } else {
       commitMint();
     }
   });
-};
+}
 
 //creates a child process for running shell commands
 const execShellCommand = (cmd) => {
@@ -46,28 +48,33 @@ const execShellCommand = (cmd) => {
 };
 
 //runs the loop
-const commitMint = () => {
-  for (let i = 0; i < 20; i++) {
+async function commitMint() {
+  for (let i = 0; i < 2; i++) {
     execShellCommand("git add .");
-    execShellCommand("git commit");
-      execShellCommand("git push origin main");
-      infiniteMonkey();
+    execShellCommand(
+      `git commit -m "the first word in monkey-attempt.txt is ${firstWord}"`
+    );
+    await execShellCommand("git push origin main");
+    console.log("first word: ", firstWord);
+    infiniteMonkey();
   }
-};
+}
 
+let firstWord = "";
 //generates a text file with random words in it
 async function infiniteMonkey() {
   let monkey = await fetch(
     "https://random-word-api.herokuapp.com/word?number=73&swear=0"
   )
     .then((response) => response.json())
-    .then((monkey) => {
-        let monkeyData = monkey.toString();
-        fs.writeFile("monkey-attempt.txt", monkeyData, (err) => {
-          //we're going to write any errors/successes to a log file
+      .then((monkey) => {
+          firstWord = monkey[0];
+      let monkeyData = monkey.toString();
+      fs.writeFile("monkey-attempt.txt", monkeyData, (err) => {
+        //we're going to write any errors/successes to a log file
         if (err) console.log(err);
       });
     });
-};
+}
 
 init();
