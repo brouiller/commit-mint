@@ -1,0 +1,9 @@
+front end
+    use inquirer to select file
+    save file information to database
+    create batch file to run front end
+
+back end
+    create batch file to run node application
+    create database
+    read from database and run commands
