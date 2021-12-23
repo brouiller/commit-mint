@@ -48,9 +48,10 @@ const execShellCommand = (cmd) => {
 //runs the loop
 const commitMint = () => {
   console.log("commitMint triggered");
-  infiniteMonkey().then(
-    execShellCommand(`git add .\ngit commit -m "test"\ngit push origin main`)
-  );
+  infiniteMonkey()
+    .then(execShellCommand(`git add .`))
+    .then(execShellCommand(`git commit -m "test"`))
+    .then(execShellCommand(`git push origin main`))
 };
 
 //generates a text file with random words in it
