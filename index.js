@@ -48,10 +48,10 @@ const execShellCommand = (cmd) => {
 //runs the loop
 const commitMint = () => {
   console.log("commitMint triggered");
-  console.log("DATE:", Date())
+  const DATE = Date()
   infiniteMonkey()
     .then(execShellCommand(`git add .`))
-    .then(execShellCommand(`git commit -m "Date()"`))
+    .then(execShellCommand(`git commit -m "` + DATE + `"`))
     .then(execShellCommand(`git push origin main`))
 };
 
