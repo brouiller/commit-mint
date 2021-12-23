@@ -20,7 +20,6 @@ async function doesBatchFileExist() {
             `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00`
           )
         )
-        .then(infiniteMonkey())
         .then(commitMint());
     }
   } catch (err) {
