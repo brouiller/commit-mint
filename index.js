@@ -13,7 +13,7 @@ const doesBatchFileExist = () => {
     } else {
       fs.writeFile("runNode.bat", `node index.js`, (error) => error ? console.log(error) : console.log(error));
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "'C:\\Program Files\\Git\\git-bash.exe' node C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\index.js" /ST 13:02\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\MyTask" /TR "'C:\\Program Files\\Git\\git-bash.exe' node C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\index.js" /ST 13:02\n`
       );
       commitMint();
     }
