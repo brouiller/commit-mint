@@ -18,8 +18,8 @@ async function doesBatchFileExist() {
         .writeFile("runNode.bat", `@echo off\nnode index.js`)
         .then(
           execShellCommand(
-            `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:/Users/Pkeld/Desktop/commit-mint/runNode.bat" /ST 11:00`
-          )
+            `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "'C:\\Program Files\\Git\\git-bash.exe' node C:\\Users\\Pkeld\\Desktop\\commit-mint\\index.js" /ST 12:14\n`
+            )
         )
         .then(commitMint());
     }
