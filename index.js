@@ -46,22 +46,20 @@ const execShellCommand = (cmd) => {
 };
 
 //runs the loop
-const commitMint = () => {
+const commitMint = async () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
-  makeCurrentTimeFile()
-  .then(execShellCommand(`git add .`))
-  .then(
-    execShellCommand(
-      `git commit -m "${formattedDate}"`
-    )
-  )
-  .then(execShellCommand(`git push --force origin bradley`));
+  const formatDate = Date(Date.now().toLocaleString);
+  await fsp
+    .writeFile("currentTime.txt", formatDate)
+    .then(execShellCommand(`git add .\n`))
+    .then(execShellCommand(`git commit -m "${formattedDate}"\n`))
+    .then(execShellCommand(`git push --force origin bradley\n`));
 };
 
 //generates a text file with random words in it
-async function makeCurrentTimeFile() {
-  const formatDate = Date(Date.now().toLocaleString);
-  await fsp.writeFile("currentTime.txt", formatDate);
-}
+// async function makeCurrentTimeFile() {
+//   const formatDate = Date(Date.now().toLocaleString);
+//   await fsp.writeFile("currentTime.txt", formatDate);
+// }
 
 init();
