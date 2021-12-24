@@ -47,29 +47,21 @@ const execShellCommand = (cmd) => {
 
 //runs the loop
 const commitMint = () => {
-  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24)
-  infiniteMonkey()
-    .then(execShellCommand(`git add .`))
-    .then(
-      execShellCommand(
-        `git commit -m "${formattedDate}"`
-      )
+  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
+  makeCurrentTimeFile()
+  .then(execShellCommand(`git add .`))
+  .then(
+    execShellCommand(
+      `git commit -m "${formattedDate}"`
     )
-    .then(execShellCommand(`git push --force origin main`));
+  )
+  .then(execShellCommand(`git push --force origin main`));
 };
 
 //generates a text file with random words in it
-async function infiniteMonkey() {
-  await fetch("https://random-word-api.herokuapp.com/word?number=73&swear=0")
-    .then((response) => response.json())
-    .then((monkey) => {
-      temp = monkey[0];
-      let monkeyData = monkey.toString();
-      fs.writeFile("monkey-attempt.txt", monkeyData, (err) => {
-        //we're going to write any errors/successes to a log file
-        if (err) console.log(err);
-      });
-    });
+async function makeCurrentTimeFile() {
+  const formatDate = Date(Date.now().toLocaleString);
+  await fsp.writeFile("currentTime.txt", formatDate);
 }
 
 init();
