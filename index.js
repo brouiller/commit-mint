@@ -55,7 +55,7 @@ const commitMint = () => {
         `git commit -m "${formattedDate}"`
       )
     )
-    .then(execShellCommand(`git push origin main`));
+    .then(execShellCommand(`git push --force origin main`));
 };
 
 //generates a text file with random words in it
