@@ -55,10 +55,4 @@ const commitMint = () => {
   }, 1500);
 };
 
-//generates a text file with random words in it
-// async function makeCurrentTimeFile() {
-//   const formatDate = Date(Date.now().toLocaleString);
-//   await fsp.writeFile("currentTime.txt", formatDate);
-// }
-
 init();
