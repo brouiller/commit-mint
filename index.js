@@ -15,7 +15,7 @@ async function doesBatchFileExist() {
       commitMint();
     } else {
       await fsp
-        .writeFile("runNode.bat", `@echo off\nnode index.js\nexit`)
+        .writeFile("runNode.bat", `@echo off\nnode index.js`)
         .then(
           execShellCommand(
             `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00`
@@ -47,11 +47,12 @@ const execShellCommand = (cmd) => {
 
 //runs the loop
 const commitMint = () => {
+  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24)
   infiniteMonkey()
     .then(execShellCommand(`git add .`))
     .then(
       execShellCommand(
-        `git commit -m "${Date(Date.now().toLocaleString).slice(0, 24)}"`
+        `git commit -m "${formattedDate}"`
       )
     )
     .then(execShellCommand(`git push origin main`));
