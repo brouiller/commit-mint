@@ -11,9 +11,9 @@ const doesBatchFileExist = () => {
     if (fs.existsSync("runNode.bat")) {
       commitMint();
     } else {
-      fs.writeFile("runNode.bat", `@echo off\nnode index.js`);
+      fs.writeFile("runNode.bat", `@echo off\nnode index.js`, (error) => error ? console.log(error) : console.log(error));
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 12:14\n`
       );
       commitMint();
     }
