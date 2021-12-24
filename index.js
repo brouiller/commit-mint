@@ -48,10 +48,16 @@ const execShellCommand = (cmd) => {
 //runs the loop
 const commitMint = () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
-  infiniteMonkey()
-    .then(execShellCommand(`git add .`))
-    .then(execShellCommand(`git commit -m "${formattedDate}"`))
-    .then(execShellCommand(`git push --force origin main`));
+infiniteMonkey();
+  setTimeout(() => {execShellCommand(`git add .`)}, 500);
+  setTimeout(() => {execShellCommand(`git commit -m "${formattedDate}"`)}, 1500);
+  setTimeout(() => {execShellCommand(`git push --force origin paul`)}, 2500);
+
+
+  // infiniteMonkey()
+  //   .then(execShellCommand(`git add .`))
+  //   .then(execShellCommand(`git commit -m "${formattedDate}"`))
+  //   .then(execShellCommand(`git push --force origin paul`));
 };
 
 //generates a text file with random words in it
