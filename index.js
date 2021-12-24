@@ -1,7 +1,7 @@
 const fs = require("fs");
 const fsp = require("fs/promises");
 const fetch = require("cross-fetch");
-let temp = ''
+let temp = "";
 
 //runs the program
 const init = () => {
@@ -47,12 +47,14 @@ const execShellCommand = (cmd) => {
 
 //runs the loop
 const commitMint = () => {
-  console.log("commitMint triggered");
-  const DATE = Date()
   infiniteMonkey()
     .then(execShellCommand(`git add .`))
-    .then(execShellCommand(`git commit -m "` + DATE + `"`))
-    .then(execShellCommand(`git push origin main`))
+    .then(
+      execShellCommand(
+        `git commit -m "${Date(Date.now().toLocaleString).slice(0, 24)}"`
+      )
+    )
+    .then(execShellCommand(`git push origin main`));
 };
 
 //generates a text file with random words in it
@@ -60,7 +62,7 @@ async function infiniteMonkey() {
   await fetch("https://random-word-api.herokuapp.com/word?number=73&swear=0")
     .then((response) => response.json())
     .then((monkey) => {
-      temp = monkey[0]
+      temp = monkey[0];
       let monkeyData = monkey.toString();
       fs.writeFile("monkey-attempt.txt", monkeyData, (err) => {
         //we're going to write any errors/successes to a log file
