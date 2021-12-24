@@ -1,7 +1,4 @@
 const fs = require("fs");
-const fsp = require("fs/promises");
-const fetch = require("cross-fetch");
-let temp = "";
 
 //runs the program
 const init = () => {
@@ -9,24 +6,21 @@ const init = () => {
 };
 
 //checks to see if the commands batch file exits, if it doesn't, it writes the file
-async function doesBatchFileExist() {
+const doesBatchFileExist = () => {
   try {
     if (fs.existsSync("runNode.bat")) {
       commitMint();
     } else {
-      await fsp
-        .writeFile("runNode.bat", `@echo off\nnode index.js`)
-        .then(
-          execShellCommand(
-            `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00`
-          )
-        )
-        .then(commitMint());
+      fs.writeFile("runNode.bat", `@echo off\nnode index.js`);
+      execShellCommand(
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00\n`
+      );
+      commitMint();
     }
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 //creates a child process for running shell commands
 const execShellCommand = (cmd) => {
@@ -46,14 +40,19 @@ const execShellCommand = (cmd) => {
 };
 
 //runs the loop
-const commitMint = async () => {
+const commitMint = () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
   const formatDate = Date(Date.now().toLocaleString);
-  await fsp
-    .writeFile("currentTime.txt", formatDate)
-    .then(execShellCommand(`git add .\n`))
-    .then(execShellCommand(`git commit -m "${formattedDate}"\n`))
-    .then(execShellCommand(`git push --force origin bradley\n`));
+  fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
+  setTimeout(() => {
+    execShellCommand(`git add .\n`);
+  }, 500);
+  setTimeout(() => {
+    execShellCommand(`git commit -m "${formattedDate}"\n`);
+  }, 1000);
+  setTimeout(() => {
+    execShellCommand(`git push --force origin bradley\n`);
+  }, 1500);
 };
 
 //generates a text file with random words in it
