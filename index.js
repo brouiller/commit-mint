@@ -49,9 +49,9 @@ const execShellCommand = (cmd) => {
 const commitMint = () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
 infiniteMonkey();
-  setTimeout(() => {execShellCommand(`git add .`)}, 500);
-  setTimeout(() => {execShellCommand(`git commit -m "${formattedDate}"`)}, 1500);
-  setTimeout(() => {execShellCommand(`git push --force origin paul`)}, 2500);
+  setTimeout(() => {execShellCommand(`git add .\n`)}, 500);
+  setTimeout(() => {execShellCommand(`git commit -m "${formattedDate}"\n`)}, 1500);
+  setTimeout(() => {execShellCommand(`git push --force origin paul\n`)}, 2500);
 
 
   // infiniteMonkey()
