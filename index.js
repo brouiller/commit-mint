@@ -1,7 +1,4 @@
 const fs = require("fs");
-const fsp = require("fs/promises");
-const fetch = require("cross-fetch");
-let temp = "";
 
 //runs the program
 const init = () => {
@@ -9,24 +6,21 @@ const init = () => {
 };
 
 //checks to see if the commands batch file exits, if it doesn't, it writes the file
-async function doesBatchFileExist() {
+const doesBatchFileExist = () => {
   try {
     if (fs.existsSync("runNode.bat")) {
       commitMint();
     } else {
-      await fsp
-        .writeFile("runNode.bat", `@echo off\nnode index.js`)
-        .then(
-          execShellCommand(
-            `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 11:00`
-          )
-        )
-        .then(commitMint());
+      fs.writeFile("runNode.bat", `@echo off\nnode index.js`, (error) => error ? console.log(error) : console.log(error));
+      execShellCommand(
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "runNode.bat" /ST 12:14\n`
+      );
+      commitMint();
     }
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 //creates a child process for running shell commands
 const execShellCommand = (cmd) => {
@@ -47,29 +41,18 @@ const execShellCommand = (cmd) => {
 
 //runs the loop
 const commitMint = () => {
-  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24)
-  infiniteMonkey()
-    .then(execShellCommand(`git add .`))
-    .then(
-      execShellCommand(
-        `git commit -m "${formattedDate}"`
-      )
-    )
-    .then(execShellCommand(`git push --force origin main`));
+  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
+  const formatDate = Date(Date.now().toLocaleString);
+  fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
+  setTimeout(() => {
+    execShellCommand(`git add .\n`);
+  }, 500);
+  setTimeout(() => {
+    execShellCommand(`git commit -m "${formattedDate}"\n`);
+  }, 1000);
+  setTimeout(() => {
+    execShellCommand(`git push --force origin bradley\n`);
+  }, 1500);
 };
-
-//generates a text file with random words in it
-async function infiniteMonkey() {
-  await fetch("https://random-word-api.herokuapp.com/word?number=73&swear=0")
-    .then((response) => response.json())
-    .then((monkey) => {
-      temp = monkey[0];
-      let monkeyData = monkey.toString();
-      fs.writeFile("monkey-attempt.txt", monkeyData, (err) => {
-        //we're going to write any errors/successes to a log file
-        if (err) console.log(err);
-      });
-    });
-}
 
 init();
