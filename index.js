@@ -51,7 +51,9 @@ const commitMint = () => {
     execShellCommand(`git commit -m "${formattedDate}"\n`);
   }, 1000);
   setTimeout(() => {
-    execShellCommand(`git push --force origin Morgan\n`);
+
+    execShellCommand(`git push --force origin \n`);
+
   }, 1500);
 };
 
