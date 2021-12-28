@@ -42,19 +42,21 @@ const execShellCommand = (cmd) => {
 const commitMint = () => {
   for (let i = 0; i < 3; i++) {
     const formatDate = Date(Date.now().toLocaleString) + i;
-    console.log("format date: ",formatDate)
-    fs.writeFile("currentTime.txt", formatDate, (error) => console.log("git error: ",error));
     setTimeout(() => {
-      execShellCommand(`git add .\n`);
+      console.log("format date: ",formatDate)
+      fs.writeFile("currentTime.txt", formatDate, (error) => console.log("git error: ", error));
     }, 500);
     setTimeout(() => {
+      execShellCommand(`git add .\n`);
+    }, 1500);
+    setTimeout(() => {
       execShellCommand(`git commit -m "${formatDate.slice(0, 24)}"\n`);
-    }, 1000);
+    }, 2500);
     setTimeout(() => {
 
       execShellCommand(`git push --force origin bradley\n`);
 
-    }, 1500);
+    }, 3500);
   }
 };
 
