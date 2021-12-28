@@ -42,6 +42,7 @@ const execShellCommand = (cmd) => {
 const commitMint = () => {
   for (let i = 0; i < 3; i++) {
     const formatDate = Date(Date.now().toLocaleString);
+    console.log("format date: ",formatDate)
     fs.writeFile("currentTime.txt", formatDate, (error) => console.log("git error: ",error));
     setTimeout(() => {
       execShellCommand(`git add .\n`);
