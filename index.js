@@ -42,8 +42,8 @@ const execShellCommand = (cmd) => {
 //runs the loop
 const commitMint = () => {
   let stringI = ""
-  for (let i = 0; i < 20; i++) {
-    stringI = stringI + "commit index: " + i + Date(Date.now().toLocaleString) + ",";
+  for (let i = 0; i < 3; i++) {
+    stringI = stringI + "commit index: " + i + Date(Date.now().toLocaleString).slice(0,24) + "\n";
     setTimeout(() => {
       // console.log("format date: ",i)
       console.log("fs: ", i);
@@ -57,7 +57,7 @@ const commitMint = () => {
     }, 100 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git commit: ", i);
-      execShellCommand(`git commit -m "${stringI}"\n`);
+      execShellCommand(`git commit -m "commit index: ${i}"\n`);
     }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git push: ", i);
