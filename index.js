@@ -46,7 +46,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 20; i++) {
     let stringI = "commit index: " + i + Date(Date.now().toLocaleString);
     setTimeout(() => {
       // console.log("format date: ",i)
