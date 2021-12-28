@@ -2,18 +2,17 @@ const fs = require("fs");
 
 //runs the program
 const init = () => {
-  doesBatchFileExist();
-};
-
-//checks to see if the commands batch file exits, if it doesn't, it writes the file
-const doesBatchFileExist = () => {
   try {
     if (fs.existsSync("runNode.bat")) {
       commitMint();
     } else {
-      fs.writeFile("runNode.bat", "@echo off\ncd C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\nnode index.js", (error) => error ? console.log(error) : console.log(error));
+      fs.writeFile(
+        "runNode.bat",
+        "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
+        (error) => (error ? console.log(error) : console.log(error))
+      );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\MyTask" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\runNode.bat" /ST 13:21\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\MyTask" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 13:21\n`
       );
       commitMint();
     }
@@ -43,18 +42,20 @@ const execShellCommand = (cmd) => {
 const commitMint = () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
   const formatDate = Date(Date.now().toLocaleString);
-  fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
-  setTimeout(() => {
-    execShellCommand(`git add .\n`);
-  }, 500);
-  setTimeout(() => {
-    execShellCommand(`git commit -m "${formattedDate}"\n`);
-  }, 1000);
-  setTimeout(() => {
+  for (let i = 0; i < 3; i++) {
+    fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
+    setTimeout(() => {
+      execShellCommand(`git add .\n`);
+    }, 500);
+    setTimeout(() => {
+      execShellCommand(`git commit -m "${formattedDate}"\n`);
+    }, 1000);
+    setTimeout(() => {
 
-    execShellCommand(`git push --force origin \n`);
+      execShellCommand(`git push --force origin bradley\n`);
 
-  }, 1500);
+    }, 1500);
+  }
 };
 
 init();
