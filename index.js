@@ -48,16 +48,16 @@ const commitMint = () => {
       fs.writeFile("currentTime.txt", stringI, (error) =>
         console.log("git error: ", error)
       );
-    }, 500 * (i * 2));
+    }, 500 * (i * 5));
     setTimeout(() => {
       execShellCommand(`git add .\n`);
-    }, 1500 * (i * 2));
+    }, 1500 * (i * 5));
     setTimeout(() => {
       execShellCommand(`git commit -m "${stringI}"\n`);
-    }, 2500 * (i * 2));
+    }, 2500 * (i * 5));
     setTimeout(() => {
       execShellCommand(`git push --force origin bradley\n`);
-    }, 3500 * (i * 2));
+    }, 3500 * (i * 5));
   }
 };
 
