@@ -43,51 +43,30 @@ const execShellCommand = (cmd) => {
   });
 };
 
+// const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
-const commitMint = async () => {
-  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
-  const formatDate = Date(Date.now().toLocaleString);
-
- makeCommits()
- setTimeout(() => {
-  execShellCommand(`git push --force origin paul\n`);
-
- }, 8000)
-
-  //   for (let i = 0; i < 3; i++) {
-
-  //   fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
-  //   setTimeout(() => {
-  //     execShellCommand(`git add .\n`);
-  //   }, 500);
-  //   setTimeout(() => {
-  //     execShellCommand(`git commit -m "${formattedDate}"\n`);
-  //   }, 1000);
-  //   setTimeout(() => {
-
-  //     execShellCommand(`git push --force origin paul\n`);
-
-  //   }, 1500);
-  // }
-};
-
-function makeCommits() {
- 
+const commitMint = () => {
   for (let i = 0; i < 3; i++) {
-    randomNumberString = Math.floor(Math.random() * 100).toString();
-    const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
-
-
-    console.log(randomNumberString);
-    fs.writeFile("currentTime.txt", randomNumberString, (error) =>
-      console.log(error)
-    );
+    let stringI = "commit index: " + i + Date(Date.now().toLocaleString);
     setTimeout(() => {
+      // console.log("format date: ",i)
+      console.log("fs 500 index: ", i);
+      fs.writeFile("currentTime.txt", stringI, (error) =>
+        error ? console.log("git error: ", error) : false
+      );
+    }, 50 + (i ? i * 250 : 1));
+    setTimeout(() => {
+      console.log("git add 1500 index: ",i)
       execShellCommand(`git add .\n`);
-    }, 500);
+    }, 100 + (i ? i * 250 : 1));
     setTimeout(() => {
-      execShellCommand(`git commit -m "${formattedDate}"\n`);
-    }, 1000);
+      console.log("git commit 2500 index: ", i);
+      execShellCommand(`git commit -m "${stringI}"\n`);
+    }, 150 + (i ? i * 250 : 1));
+    setTimeout(() => {
+      console.log("git push 3500 index: ", i);
+      execShellCommand(`git push --force origin paul\n`);
+    }, 200 + (i ? i * 250 : 1));
   }
 }
 
