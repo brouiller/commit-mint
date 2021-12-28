@@ -41,7 +41,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 7; i++) {
     let stringI = "commit index: " + i + Date(Date.now().toLocaleString);
     setTimeout(() => {
       // console.log("format date: ",i)
@@ -49,19 +49,19 @@ const commitMint = () => {
       fs.writeFile("currentTime.txt", stringI, (error) =>
         error ? console.log("git error: ", error) : false
       );
-    }, 50 + (i ? i * 250 : 1));
+    }, 5 + (i ? i * 250 : 1));
     setTimeout(() => {
       console.log("git add 1500 index: ",i)
       execShellCommand(`git add .\n`);
-    }, 100 + (i ? i * 250 : 1));
+    }, 10 + (i ? i * 250 : 1));
     setTimeout(() => {
       console.log("git commit 2500 index: ", i);
       execShellCommand(`git commit -m "${stringI}"\n`);
-    }, 150 + (i ? i * 250 : 1));
+    }, 15 + (i ? i * 250 : 1));
     setTimeout(() => {
       console.log("git push 3500 index: ", i);
       execShellCommand(`git push --force origin bradley\n`);
-    }, 200 + (i ? i * 250 : 1));
+    }, 20 + (i ? i * 250 : 1));
   }
 };
 
