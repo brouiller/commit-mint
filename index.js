@@ -48,8 +48,11 @@ const commitMint = async () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
   const formatDate = Date(Date.now().toLocaleString);
 
- await makeCommits()
- execShellCommand(`git push --force origin paul\n`);
+ makeCommits()
+ setTimeout(() => {
+  execShellCommand(`git push --force origin paul\n`);
+
+ }, 5000)
 
   //   for (let i = 0; i < 3; i++) {
 
