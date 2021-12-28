@@ -49,19 +49,19 @@ const commitMint = () => {
       fs.writeFile("currentTime.txt", stringI, (error) =>
         console.log("git error: ", error)
       );
-    }, 500 * (i * 5));
+    }, 500 * (i ? i * 5 : 1));
     setTimeout(() => {
       console.log("git add 1500 index: ",i)
       execShellCommand(`git add .\n`);
-    }, 1500 * (i * 5));
+    }, 1500 * (i ? i * 5 : 1));
     setTimeout(() => {
       console.log("git commit 2500 index: ", i);
       execShellCommand(`git commit -m "${stringI}"\n`);
-    }, 2500 * (i * 5));
+    }, 2500 * (i ? i * 5 : 1));
     setTimeout(() => {
       console.log("git push 3500 index: ", i);
       execShellCommand(`git push --force origin bradley\n`);
-    }, 3500 * (i * 5));
+    }, 3500 * (i ? i * 5 : 1));
   }
 };
 
