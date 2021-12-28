@@ -17,7 +17,7 @@ const doesBatchFileExist = () => {
         (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\MyTask" /TR "C:\\Users\\Pkeld\\Desktop\\commit-mint\\runNode.bat" /ST 13:21\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Pkeld\\Documents\\commit-mint\\runNode.bat" /ST 10:00\n`
       );
       commitMint();
     }
@@ -54,19 +54,19 @@ const commitMint = () => {
       fs.writeFile("currentTime.txt", stringI, (error) =>
         error ? console.log("git error: ", error) : false
       );
-    }, 50 + (i ? i * 250 : 1));
+    }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git add 1500 index: ",i)
       execShellCommand(`git add .\n`);
-    }, 100 + (i ? i * 250 : 1));
+    }, 100 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git commit 2500 index: ", i);
       execShellCommand(`git commit -m "${stringI}"\n`);
-    }, 150 + (i ? i * 250 : 1));
+    }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git push 3500 index: ", i);
       execShellCommand(`git push --force origin paul\n`);
-    }, 200 + (i ? i * 250 : 1));
+    }, 200 + (i ? i * 1000 : 1));
   }
 }
 
