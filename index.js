@@ -52,7 +52,7 @@ const commitMint = async () => {
  setTimeout(() => {
   execShellCommand(`git push --force origin paul\n`);
 
- }, 5000)
+ }, 8000)
 
   //   for (let i = 0; i < 3; i++) {
 
