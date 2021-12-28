@@ -40,22 +40,22 @@ const execShellCommand = (cmd) => {
 
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
-const commitMint = () => {
+const commitMint = async () => {
   for (let i = 0; i < 3; i++) {
     let stringI = "commit index: " + i + Date(Date.now().toLocaleString);
     setTimeout(() => {
       // console.log("format date: ",i)
       fs.writeFile("currentTime.txt", stringI, (error) => console.log("git error: ", error));
     }, 500);
-    setTimeout(() => {
-      execShellCommand(`git add .\n`);
+    setTimeout(async () => {
+     await execShellCommand(`git add .\n`);
     }, 1500);
-    setTimeout(() => {
-      execShellCommand(`git commit -m "${stringI}"\n`);
+    setTimeout(async () => {
+     await execShellCommand(`git commit -m "${stringI}"\n`);
     }, 2500);
-    setTimeout(() => {
+    setTimeout(async () => {
 
-      execShellCommand(`git push --force origin bradley\n`);
+     await execShellCommand(`git push --force origin bradley\n`);
 
     }, 3500);
   }
