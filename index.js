@@ -44,25 +44,47 @@ const execShellCommand = (cmd) => {
 };
 
 //runs the loop
-const commitMint = () => {
+const commitMint = async () => {
   const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
   const formatDate = Date(Date.now().toLocaleString);
 
-  for (let i = 0; i < 3; i++) {
+ await makeCommits()
+ execShellCommand(`git push --force origin paul\n`);
 
-  fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
-  setTimeout(() => {
-    execShellCommand(`git add .\n`);
-  }, 500);
-  setTimeout(() => {
-    execShellCommand(`git commit -m "${formattedDate}"\n`);
-  }, 1000);
-  setTimeout(() => {
+  //   for (let i = 0; i < 3; i++) {
 
-    execShellCommand(`git push --force origin paul\n`);
+  //   fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
+  //   setTimeout(() => {
+  //     execShellCommand(`git add .\n`);
+  //   }, 500);
+  //   setTimeout(() => {
+  //     execShellCommand(`git commit -m "${formattedDate}"\n`);
+  //   }, 1000);
+  //   setTimeout(() => {
 
-  }, 1500);
-}
+  //     execShellCommand(`git push --force origin paul\n`);
+
+  //   }, 1500);
+  // }
 };
+
+function makeCommits() {
+  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
+  const formatDate = Date(Date.now().toLocaleString);
+  for (let i = 0; i < 3; i++) {
+    randomNumberString = Math.floor(Math.random() * 100).toString();
+
+    console.log(randomNumberString);
+    fs.writeFile("currentTime.txt", randomNumberString, (error) =>
+      console.log(error)
+    );
+    setTimeout(() => {
+      execShellCommand(`git add .\n`);
+    }, 500);
+    setTimeout(() => {
+      execShellCommand(`git commit -m "${formattedDate}"\n`);
+    }, 1000);
+  }
+}
 
 init();
