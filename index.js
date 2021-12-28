@@ -69,10 +69,11 @@ const commitMint = async () => {
 };
 
 function makeCommits() {
-  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
-  const formatDate = Date(Date.now().toLocaleString);
+ 
   for (let i = 0; i < 3; i++) {
     randomNumberString = Math.floor(Math.random() * 100).toString();
+    const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
+
 
     console.log(randomNumberString);
     fs.writeFile("currentTime.txt", randomNumberString, (error) =>
