@@ -38,19 +38,20 @@ const execShellCommand = (cmd) => {
   });
 };
 
+// const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
   for (let i = 0; i < 3; i++) {
-    const formatDate = Date(Date.now().toLocaleString) + i;
+    let stringI = "commit index: " + i;
     setTimeout(() => {
-      console.log("format date: ",formatDate)
-      fs.writeFile("currentTime.txt", formatDate, (error) => console.log("git error: ", error));
+      // console.log("format date: ",i)
+      fs.writeFile("currentTime.txt", stringI, (error) => console.log("git error: ", error));
     }, 500);
     setTimeout(() => {
       execShellCommand(`git add .\n`);
     }, 1500);
     setTimeout(() => {
-      execShellCommand(`git commit -m "${formatDate.slice(0, 24)}"\n`);
+      execShellCommand(`git commit -m "${stringI}"\n`);
     }, 2500);
     setTimeout(() => {
 
