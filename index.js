@@ -40,15 +40,14 @@ const execShellCommand = (cmd) => {
 
 //runs the loop
 const commitMint = () => {
-  const formattedDate = Date(Date.now().toLocaleString).slice(0, 24);
-  const formatDate = Date(Date.now().toLocaleString);
   for (let i = 0; i < 3; i++) {
-    fs.writeFile("currentTime.txt", formatDate, (error) => console.log(error));
+    const formatDate = Date(Date.now().toLocaleString);
+    fs.writeFile("currentTime.txt", formatDate, (error) => console.log("git error: ",error));
     setTimeout(() => {
       execShellCommand(`git add .\n`);
     }, 500);
     setTimeout(() => {
-      execShellCommand(`git commit -m "${formattedDate}"\n`);
+      execShellCommand(`git commit -m "${formatDate.slice(0, 24)}"\n`);
     }, 1000);
     setTimeout(() => {
 
