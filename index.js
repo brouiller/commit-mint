@@ -9,7 +9,7 @@ const init = () => {
       fs.writeFile(
         "runNode.bat",
         "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
-        (error) => (error ? console.log(error) : console.log(error))
+        (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
         `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\MyTask" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 13:21\n`
