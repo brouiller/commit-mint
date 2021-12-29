@@ -57,11 +57,11 @@ const commitMint = () => {
     }, 1000 + (i ? i * 1000 : 1000));
     setTimeout(() => {
       console.log("git commit: ", i);
-      execShellCommand("git commit -m " + "\"commit-index " + i + "\"");
+      execShellCommand("git commit -m " + "\"commit-index " + i + "\"\n");
     }, 1500 + (i ? i * 1000 : 1000));
     setTimeout(() => {
       console.log("git push: ", i);
-      execShellCommand(`git push --force origin bradley`);
+      execShellCommand(`git push --force origin bradley\n`);
     }, 2000 + (i ? i * 1000 : 1000));
   }
 };
