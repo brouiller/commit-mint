@@ -14,10 +14,19 @@ const doesBatchFileExist = () => {
       fs.writeFile(
         "runNode.bat",
         "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
-        (error) => (error ? console.log(error) : console.log("stuff ran"))
+        (error) =>
+          error ? console.log(error) : console.log("bat file created")
+      );
+      fs.writeFile(
+        "run.vbs",
+        `Set WshShell = CreateObject("WScript.Shell")\n
+        WshShell.Run chr(34) & "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" & Chr(34), 0\n
+        Set WshShell = Nothing\n`,
+        (error) =>
+          error ? console.log(error) : console.log("vbs file created")
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 12:59\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\run.vbs" /ST 13:08\n`
       );
     }
   } catch (err) {
@@ -45,37 +54,52 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-
-let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
-  fs.writeFile("currentTime.txt", logFileText, (error) =>
-  error ? console.log("git error: ", error) : false
-);
-
-  for (let i = 0; i < 20; i++) {
-    let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n";
+  let logFileText = `{"date": "${Date(Date.now().toLocaleString)}",`;
+  fs.writeFile("log.json", logFileText, (error) =>
+    error ? console.log("git error: ", error) : false
+  );
+  let loopLength = 5;
+  for (let i = 0; i < loopLength; i++) {
+    let stringI = `{"commit": "${i}"}`;
     setTimeout(() => {
-      // console.log("format date: ",i)
-      console.log("fs 500 index: ", i);
-      fs.appendFile("currentTime.txt", stringI, (error) =>
-
-        error ? console.log("git error: ", error) : false
+      fs.appendFile(
+        "log.json",
+        `"fs command": "appendFile", "fsTime": "${50 + (i ? i * 1000 : 1)}",`,
+        (error) => (error ? console.log("git error: ", error) : false)
       );
     }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
-      console.log("git add 1500 index: ", i);
+      fs.appendFile(
+        "log.json",
+        `"git command": "add", "addTime": "${100 + (i ? i * 1000 : 1)}",`,
+        (error) => (error ? console.log("git error: ", error) : false)
+      );
       execShellCommand(`git add .\n`);
     }, 100 + (i ? i * 1000 : 1));
     setTimeout(() => {
-      console.log("git commit 2500 index: ", i);
+      fs.appendFile(
+        "log.json",
+        `"git command": "commit", "commitTime": "${150 + (i ? i * 1000 : 1)}",`,
+        (error) => (error ? console.log("git error: ", error) : false)
+      );
       execShellCommand(`git commit -m "${stringI}"\n`);
     }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
-
-      console.log("git push 3500 index: ", i);
+      fs.appendFile(
+        "log.json",
+        `"git command": "push", "pushTime": "${200 + (i ? i * 1000 : 1)}",`,
+        (error) => (error ? console.log("git error: ", error) : false)
+      );
       execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
-
+    if (i = loopLength - 1) {
+      setTimeout(() => {
+        fs.appendFile("log.json", `"end": "${250 + (i ? i * 1000 : 1)}"}`, (error) =>
+          error ? console.log("git error: ", error) : false
+        );
+      }, 250 + (i ? i * 1000 : 1));
+    }
   }
-}
+};
 
 init();
