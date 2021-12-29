@@ -13,13 +13,12 @@ const doesBatchFileExist = () => {
     } else {
       fs.writeFile(
         "runNode.bat",
-        "@echo off\ncd C:\\Users\\Pkeld\\Desktop\\commit-mint\nnode index.js",
+        "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
         (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Pkeld\\Documents\\commit-mint\\runNode.bat" /ST 10:00\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 12:59\n`
       );
-      commitMint();
     }
   } catch (err) {
     console.error(err);
@@ -52,7 +51,7 @@ let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
   error ? console.log("git error: ", error) : false
 );
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 20; i++) {
     let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n";
     setTimeout(() => {
       // console.log("format date: ",i)
@@ -61,19 +60,19 @@ let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
 
         error ? console.log("git error: ", error) : false
       );
-    }, 50 + (i ? i * 100 : 100));
+    }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
-      console.log("git add: ",i)
+      console.log("git add 1500 index: ", i);
       execShellCommand(`git add .\n`);
-    }, 100 + (i ? i * 100 : 100));
+    }, 100 + (i ? i * 1000 : 1));
     setTimeout(() => {
-      console.log("git commit: ", i);
-      execShellCommand("git commit -m " + "\"commit-index " + i + "\"\n");
-    }, 150 + (i ? i * 100 : 100));
+      console.log("git commit 2500 index: ", i);
+      execShellCommand(`git commit -m "${stringI}"\n`);
+    }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
 
       console.log("git push 3500 index: ", i);
-      execShellCommand(`git push --force origin paul\n`);
+      execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
 
   }
