@@ -2,6 +2,11 @@ const fs = require("fs");
 
 //runs the program
 const init = () => {
+  doesBatchFileExist();
+};
+
+//checks to see if the commands batch file exits, if it doesn't, it writes the file
+const doesBatchFileExist = () => {
   try {
     if (fs.existsSync("runNode.bat")) {
       commitMint();
@@ -41,13 +46,19 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-  let stringI = ""
-  for (let i = 0; i < 3; i++) {
-    stringI = stringI + "commit index: " + i + Date(Date.now().toLocaleString).slice(0,24) + "\n";
+
+let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
+  fs.writeFile("currentTime.txt", logFileText, (error) =>
+  error ? console.log("git error: ", error) : false
+);
+
+  for (let i = 0; i < 5; i++) {
+    let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n";
     setTimeout(() => {
       // console.log("format date: ",i)
-      console.log("fs: ", i);
-      fs.writeFile(`currentTime.txt`, stringI, (error) =>
+      console.log("fs 500 index: ", i);
+      fs.appendFile("currentTime.txt", stringI, (error) =>
+
         error ? console.log("git error: ", error) : false
       );
     }, 50 + (i ? i * 1000 : 1));
@@ -60,10 +71,11 @@ const commitMint = () => {
       execShellCommand("git commit -m " + "\"commit-index " + i + "\"\n");
     }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
-      console.log("git push: ", i);
+      console.log("git push 3500 index: ", i);
       execShellCommand(`git push --force origin Morga\n`);
     }, 200 + (i ? i * 1000 : 1));
+
   }
-};
+}
 
 init();
