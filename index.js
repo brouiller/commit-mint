@@ -46,13 +46,13 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n";
+let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
   fs.writeFile("currentTime.txt", logFileText, (error) =>
   error ? console.log("git error: ", error) : false
 );
 
   for (let i = 0; i < 5; i++) {
-    let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n\n";
+    let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n";
     setTimeout(() => {
       // console.log("format date: ",i)
       console.log("fs 500 index: ", i);
