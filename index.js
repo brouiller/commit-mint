@@ -52,7 +52,7 @@ let logFileText = "Daily log for " + Date(Date.now().toLocaleString);
 );
 
   for (let i = 0; i < 5; i++) {
-    let stringI = "commit index: " + i + Date(Date.now().toLocaleString);
+    let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n";
     setTimeout(() => {
       // console.log("format date: ",i)
       console.log("fs 500 index: ", i);
