@@ -57,7 +57,7 @@ const commitMint = () => {
     }, 100 + (i ? i * 1000 : 10));
     setTimeout(() => {
       console.log("git commit: ", i);
-      execShellCommand(`git commit -m "commit index ${i}"`);
+      execShellCommand(`git commit -m "index ${i}"`);
     }, 150 + (i ? i * 1000 : 10));
     setTimeout(() => {
       console.log("git push: ", i);
