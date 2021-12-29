@@ -61,7 +61,7 @@ const commitMint = () => {
     }, 150 + (i ? i * 100 : 100));
     setTimeout(() => {
       console.log("git push: ", i);
-      execShellCommand(`git push --force origin bradley\n`);
+      execShellCommand(`git push --force origin Morga\n`);
     }, 200 + (i ? i * 100 : 100));
   }
 };
