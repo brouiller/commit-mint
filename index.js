@@ -54,7 +54,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-  let logFileText = `{{"date": "${Date(Date.now().toLocaleString)}"},`;
+  let logFileText = `{"date": "${Date(Date.now().toLocaleString)}"},`;
   fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
@@ -92,11 +92,11 @@ const commitMint = () => {
       );
       execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
-    if (i = loopLength - 1) {
-      fs.appendFile("log.json", `}`, (error) =>
-        error ? console.log("git error: ", error) : false
-      );
-    }
+    // if (i = loopLength - 1) {
+    //   fs.appendFile("log.json", `}`, (error) =>
+    //     error ? console.log("git error: ", error) : false
+    //   );
+    // }
   }
 };
 
