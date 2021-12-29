@@ -13,11 +13,11 @@ const doesBatchFileExist = () => {
     } else {
       fs.writeFile(
         "runNode.bat",
-        "@echo off\ncd C:\\Users\\Pkeld\\Desktop\\commit-mint\nnode index.js",
+        "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
         (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Pkeld\\Documents\\commit-mint\\runNode.bat" /ST 10:00\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 10:00\n`
       );
       commitMint();
     }
@@ -73,7 +73,7 @@ let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
     setTimeout(() => {
 
       console.log("git push 3500 index: ", i);
-      execShellCommand(`git push --force origin paul\n`);
+      execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
 
   }
