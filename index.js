@@ -58,8 +58,8 @@ const commitMint = () => {
   fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
-
-  for (let i = 0; i < 20; i++) {
+  let loopLength = 5;
+  for (let i = 0; i < loopLength; i++) {
     let stringI = `{"commit": "${i}"}`;
     setTimeout(() => {
       fs.appendFile(
@@ -92,10 +92,12 @@ const commitMint = () => {
       );
       execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
+    if (i = loopLength - 1) {
+      fs.appendFile("log.json", `}`, (error) =>
+        error ? console.log("git error: ", error) : false
+      );
+    }
   }
-  fs.appendFile("log.json", `}`, (error) =>
-    error ? console.log("git error: ", error) : false
-  );
 };
 
 init();
