@@ -17,7 +17,7 @@ const doesBatchFileExist = () => {
         (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint2" /TR "C:\\Users\\Pkeld\\Documents\\commit-mint\\runNode.bat" /ST 10:00\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Pkeld\\Documents\\commit-mint\\runNode.bat" /ST 13:05\n`
       );
       commitMint();
     }
