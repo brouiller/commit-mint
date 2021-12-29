@@ -17,9 +17,8 @@ const doesBatchFileExist = () => {
         (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 10:00\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 12:59\n`
       );
-      commitMint();
     }
   } catch (err) {
     console.error(err);
@@ -52,7 +51,7 @@ let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
   error ? console.log("git error: ", error) : false
 );
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 20; i++) {
     let stringI = "commit index: " + i + Date(Date.now().toLocaleString) + "\n";
     setTimeout(() => {
       // console.log("format date: ",i)
