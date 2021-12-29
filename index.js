@@ -47,7 +47,7 @@ const commitMint = () => {
     setTimeout(() => {
       // console.log("format date: ",i)
       console.log("fs: ", i);
-      fs.writeFile("currentTime.txt", stringI, (error) =>
+      fs.writeFile(`currentTime${i}.txt`, stringI, (error) =>
         error ? console.log("git error: ", error) : false
       );
     }, 500 + (i ? i * 1000 : 1000));
