@@ -47,22 +47,22 @@ const commitMint = () => {
     setTimeout(() => {
       // console.log("format date: ",i)
       console.log("fs: ", i);
-      fs.writeFile(`currentTime${i}.txt`, stringI, (error) =>
+      fs.writeFile(`currentTime.txt`, stringI, (error) =>
         error ? console.log("git error: ", error) : false
       );
-    }, 500 + (i ? i * 1000 : 1000));
+    }, 50 + (i ? i * 1000 : 1000));
     setTimeout(() => {
       console.log("git add: ",i)
       execShellCommand(`git add .\n`);
-    }, 1000 + (i ? i * 1000 : 1000));
+    }, 100 + (i ? i * 1000 : 1000));
     setTimeout(() => {
       console.log("git commit: ", i);
       execShellCommand("git commit -m " + "\"commit-index " + i + "\"\n");
-    }, 1500 + (i ? i * 1000 : 1000));
+    }, 150 + (i ? i * 1000 : 1000));
     setTimeout(() => {
       console.log("git push: ", i);
       execShellCommand(`git push --force origin bradley\n`);
-    }, 2000 + (i ? i * 1000 : 1000));
+    }, 200 + (i ? i * 1000 : 1000));
   }
 };
 
