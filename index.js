@@ -54,7 +54,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-  let logFileText = `{"date": "${Date(Date.now().toLocaleString)}"},`;
+  let logFileText = `{"date": "${Date(Date.now().toLocaleString)}",`;
   fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
@@ -64,14 +64,14 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `{"fs command": "appendFile", "time": "${50 + (i ? i * 1000 : 1)}"},`,
+        `"fs command": "appendFile", "time": "${50 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
     }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `{"git command": "add", "time": "${100 + (i ? i * 1000 : 1)}"},`,
+        `"git command": "add", "time": "${100 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git add .\n`);
@@ -79,7 +79,7 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `{"git command": "commit", "time": "${150 + (i ? i * 1000 : 1)}"},`,
+        `"git command": "commit", "time": "${150 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git commit -m "${stringI}"\n`);
@@ -87,16 +87,16 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `{"git command": "push", "time": "${200 + (i ? i * 1000 : 1)}"},`,
+        `"git command": "push", "time": "${200 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
-    // if (i = loopLength - 1) {
-    //   fs.appendFile("log.json", `}`, (error) =>
-    //     error ? console.log("git error: ", error) : false
-    //   );
-    // }
+    if (i = loopLength - 1) {
+      fs.appendFile("log.json", `}`, (error) =>
+        error ? console.log("git error: ", error) : false
+      );
+    }
   }
 };
 
