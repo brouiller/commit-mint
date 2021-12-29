@@ -53,7 +53,7 @@ const commitMint = () => {
     }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git add: ",i)
-      execShellCommand(`git add .`);
+      execShellCommand(`git add .\n`);
     }, 100 + (i ? i * 1000 : 1));
     setTimeout(() => {
       console.log("git commit: ", i);
