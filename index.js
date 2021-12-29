@@ -8,11 +8,11 @@ const init = () => {
     } else {
       fs.writeFile(
         "runNode.bat",
-        "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
+        "@echo off\ncd C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\nnode index.js",
         (error) => (error ? console.log(error) : console.log("stuff ran"))
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" /ST 10:00\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\runNode.bat" /ST 10:00\n`
       );
       commitMint();
     }
