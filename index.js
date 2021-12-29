@@ -46,7 +46,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-let logFileText = "Daily log for " + Date(Date.now().toLocaleString);
+let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n";
   fs.writeFile("currentTime.txt", logFileText, (error) =>
   error ? console.log("git error: ", error) : false
 );
