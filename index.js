@@ -46,6 +46,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
+
 let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
   fs.writeFile("currentTime.txt", logFileText, (error) =>
   error ? console.log("git error: ", error) : false
@@ -57,21 +58,24 @@ let logFileText = "Daily log for " + Date(Date.now().toLocaleString) + "\n\n";
       // console.log("format date: ",i)
       console.log("fs 500 index: ", i);
       fs.appendFile("currentTime.txt", stringI, (error) =>
+
         error ? console.log("git error: ", error) : false
       );
-    }, 50 + (i ? i * 1000 : 1));
+    }, 50 + (i ? i * 100 : 100));
     setTimeout(() => {
-      console.log("git add 1500 index: ",i)
+      console.log("git add: ",i)
       execShellCommand(`git add .\n`);
-    }, 100 + (i ? i * 1000 : 1));
+    }, 100 + (i ? i * 100 : 100));
     setTimeout(() => {
-      console.log("git commit 2500 index: ", i);
-      execShellCommand(`git commit -m "${stringI}"\n`);
-    }, 150 + (i ? i * 1000 : 1));
+      console.log("git commit: ", i);
+      execShellCommand("git commit -m " + "\"commit-index " + i + "\"\n");
+    }, 150 + (i ? i * 100 : 100));
     setTimeout(() => {
+
       console.log("git push 3500 index: ", i);
       execShellCommand(`git push --force origin paul\n`);
     }, 200 + (i ? i * 1000 : 1));
+
   }
 }
 
