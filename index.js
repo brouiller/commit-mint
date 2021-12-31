@@ -13,20 +13,20 @@ const doesBatchFileExist = () => {
     } else {
       fs.writeFile(
         "runNode.bat",
-        "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
+        "@echo off\ncd C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\nnode index.js",
         (error) =>
           error ? console.log(error) : console.log("bat file created")
       );
       fs.writeFile(
         "run.vbs",
         `Set WshShell = CreateObject("WScript.Shell")\n
-        WshShell.Run chr(34) & "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" & Chr(34), 0\n
+        WshShell.Run chr(34) & "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\runNode.bat" & Chr(34), 0\n
         Set WshShell = Nothing\n`,
         (error) =>
           error ? console.log(error) : console.log("vbs file created")
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\run.vbs" /ST 13:08\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\run.vbs" /ST 13:08\n`
       );
     }
   } catch (err) {
@@ -90,7 +90,7 @@ const commitMint = () => {
         `"git command": "push", "pushTime": "${200 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
-      execShellCommand(`git push --force origin bradley\n`);
+      execShellCommand(`git push --force origin Morga\n`);
     }, 200 + (i ? i * 1000 : 1));
     if (i = loopLength - 1) {
       setTimeout(() => {
