@@ -26,7 +26,7 @@ const doesBatchFileExist = () => {
           error ? console.log(error) : console.log("vbs file created")
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\run.vbs" /ST 13:08\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\commit" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\run.vbs" /ST 09:07\n`
       );
     }
   } catch (err) {
