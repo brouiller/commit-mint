@@ -26,7 +26,7 @@ const doesBatchFileExist = () => {
           error ? console.log(error) : console.log("vbs file created")
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\commit" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\run.vbs" /ST 09:07\n`
+        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint\\commit" /TR "C:\\Users\\Morga\\Desktop\\Projects\\commit-mint\\run.vbs" /ST 09:09\n`
       );
     }
   } catch (err) {
@@ -58,7 +58,7 @@ const commitMint = () => {
   fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
-  let loopLength = 5;
+  let loopLength = 20;
   for (let i = 0; i < loopLength; i++) {
     let stringI = `{"commit": "${i}"}`;
     setTimeout(() => {
