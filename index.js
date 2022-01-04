@@ -58,7 +58,7 @@ const commitMint = () => {
   fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
-  let loopLength = 2;
+  let loopLength = 5;
   for (let i = 0; i < loopLength; i++) {
     let stringI = `{"commit": "${i}"}`;
     setTimeout(() => {
