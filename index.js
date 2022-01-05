@@ -9,7 +9,7 @@ let branchName = "bradley";
 
 //runs the program
 const init = () => {
-  fs.readFileSync("config.json", "utf8", (err, data) => {
+  fs.readFile("config.json", "utf8", (err, data) => {
     console.log(data)
     const fileContents = JSON.parse(data);
     loopLength = fileContents.loopLength.value;
