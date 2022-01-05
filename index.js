@@ -60,7 +60,7 @@ const commitMint = () => {
   );
   let loopLength = 5;
   for (let i = 0; i < loopLength; i++) {
-    let stringI = `{"commit": "${i}"}`;
+    let commitMessage = `commit: ${i}`;
     setTimeout(() => {
       fs.appendFile(
         "log.json",
@@ -82,7 +82,7 @@ const commitMint = () => {
         `"git commit": "commit", "commitTime": "${150 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
-      execShellCommand(`git commit -m "${stringI}"\n`);
+      execShellCommand(`git commit -m "${commitMessage}"\n`);
     }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
       fs.appendFile(
