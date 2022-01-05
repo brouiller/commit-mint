@@ -10,14 +10,14 @@ let branchName = "bradley";
 fs.readFileSync("user.config","utf8",(err,data)=>{
   console.log(err)
   const fileContents = JSON.parse(data);
-  loopLength = fileContents.loopLength;
+  loopLength = fileContents.loopLength.value;
   projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
   runFrequency = fileContents.runFrequency;
   runTime = fileContents.runTime;
   taskName = fileContents.taskName;
   commitPrefix = fileContents.commitPrefix;
   branchName = fileContents.branchName;
-  console.log(branchName)
+  console.log(loopLength)
 })
 //runs the program
 const init = () => {
