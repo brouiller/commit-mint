@@ -10,7 +10,6 @@ let branchName = "bradley";
 //runs the program
 const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
-    //console.log(data)
     const fileContents = JSON.parse(data);
     loopLength = fileContents.loopLength;
     projectDirectory = fileContents.projectDirectory.replace("\\", "\\\\");
@@ -19,7 +18,7 @@ const init = () => {
     taskName = fileContents.taskName;
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
-    console.log(loopLength);
+    console.log("loopLength : ",loopLength);
   });
   doesBatchFileExist();
 };
