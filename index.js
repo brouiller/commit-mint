@@ -16,8 +16,8 @@ fs.readFileSync("user.config","utf8",(err,data)=>{
   taskName = fileContents.taskName;
   commitPrefix = fileContents.commitPrefix;
   branchName = fileContents.branchName;
+  console.log(branchName)
 })
-console.log(branchName)
 //runs the program
 const init = () => {
   doesBatchFileExist();
