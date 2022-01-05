@@ -9,19 +9,17 @@ let branchName = "bradley";
 
 //runs the program
 const init = () => {
-  try {
-    fs.readFileSync("user.config","utf8",(err,data)=>{
-      const fileContents = JSON.parse(data);
-      loopLength = fileContents.loopLength.value;
-      projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
-      runFrequency = fileContents.runFrequency;
-      runTime = fileContents.runTime;
-      taskName = fileContents.taskName;
-      commitPrefix = fileContents.commitPrefix;
-      branchName = fileContents.branchName;
-      console.log(loopLength)
-    })}
-    catch (err){console.error("catch error: ",err)}
+  fs.readFileSync("user.config", "utf8", (err, data) => {
+    const fileContents = JSON.parse(data);
+    loopLength = fileContents.loopLength.value;
+    projectDirectory = fileContents.projectDirectory.replace("\\", "\\\\");
+    runFrequency = fileContents.runFrequency;
+    runTime = fileContents.runTime;
+    taskName = fileContents.taskName;
+    commitPrefix = fileContents.commitPrefix;
+    branchName = fileContents.branchName;
+    console.log(loopLength);
+  });
   doesBatchFileExist();
 };
 
