@@ -11,7 +11,7 @@ let branchName = "bradley";
 const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
     const fileContents = JSON.parse(data);
-    loopLength = fileContents.loopLength;
+    loopLength = parseInt(fileContents.loopLength);
     projectDirectory = fileContents.projectDirectory.replace(/\\/g,"\\\\");
     runFrequency = fileContents.runFrequency;
     runTime = fileContents.runTime;
