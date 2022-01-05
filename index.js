@@ -62,10 +62,12 @@ const commitMint = () => {
   for (let i = 0; i < loopLength; i++) {
     let commitMessage = `commit: ${i}`;
     setTimeout(() => {
-      console.log("fs command: ",i);
+      console.log("fs command: ", i);
       fs.appendFile(
         "log.json",
-        `"fs command${i}": "appendFile", "fsTime": "${50 + (i ? i * 1000 : 1)}",`,
+        `"fs command${i}": "appendFile", "fsTime${i}": "${
+          50 + (i ? i * 1000 : 1)
+        }",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
     }, 50 + (i ? i * 1000 : 1));
@@ -73,7 +75,7 @@ const commitMint = () => {
       console.log("git add: ", i);
       fs.appendFile(
         "log.json",
-        `"gitAdd${i}": "add", "addTime": "${100 + (i ? i * 1000 : 1)}",`,
+        `"gitAdd${i}": "add", "addTime${i}": "${100 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git add .\n`);
@@ -81,7 +83,7 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `"gitCommit${i}": "commit", "commitTime": "${
+        `"gitCommit${i}": "commit", "commitTime${i}": "${
           150 + (i ? i * 1000 : 1)
         }",`,
         (error) => (error ? console.log("git error: ", error) : false)
@@ -91,7 +93,9 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `"gitPush${i}": "push", "pushTime": "${200 + (i ? i * 1000 : 1)}"\n`,
+        `"gitPush${i}": "push", "pushTime${i}": "${
+          200 + (i ? i * 1000 : 1)
+        }"\n`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git push --force origin bradley\n`);
