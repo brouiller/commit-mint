@@ -55,7 +55,7 @@ const execShellCommand = (cmd) => {
 //runs the loop
 const commitMint = () => {
   let logFileText = `"date": "${Date(Date.now().toLocaleString)}",`;
-  fs.writeFile("commitMint.log", logFileText, (error) =>
+  fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
   let loopLength = 2;
@@ -64,7 +64,7 @@ const commitMint = () => {
     setTimeout(() => {
       console.log("fs command: ", i);
       fs.appendFile(
-        "commitMint.log",
+        "log.json",
         `"fs command${i}": "appendFile", "fsTime${i}": "${
           50 + (i ? i * 1000 : 1)
         }",`,
@@ -74,7 +74,7 @@ const commitMint = () => {
     setTimeout(() => {
       console.log("git add: ", i);
       fs.appendFile(
-        "commitMint.log",
+        "log.json",
         `"gitAdd${i}": "add", "addTime${i}": "${100 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
@@ -82,7 +82,7 @@ const commitMint = () => {
     }, 100 + (i ? i * 1000 : 1));
     setTimeout(() => {
       fs.appendFile(
-        "commitMint.log",
+        "log.json",
         `"gitCommit${i}": "commit", "commitTime${i}": "${
           150 + (i ? i * 1000 : 1)
         }",`,
@@ -92,7 +92,7 @@ const commitMint = () => {
     }, 150 + (i ? i * 1000 : 1));
     setTimeout(() => {
       fs.appendFile(
-        "commitMint.log",
+        "log.json",
         `"gitPush${i}": "push", "pushTime${i}": "${
           200 + (i ? i * 1000 : 1)
         }"\n`,
