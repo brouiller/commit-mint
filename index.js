@@ -54,7 +54,7 @@ const execShellCommand = (cmd) => {
 // const formatDate = Date(Date.now().toLocaleString);
 //runs the loop
 const commitMint = () => {
-  let logFileText = `{"date": "${Date(Date.now().toLocaleString)}",`;
+  let logFileText = `"date": "${Date(Date.now().toLocaleString)}",`;
   fs.writeFile("log.json", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
@@ -65,7 +65,7 @@ const commitMint = () => {
       console.log("fs command: ",i);
       fs.appendFile(
         "log.json",
-        `"fs command": "appendFile", "fsTime": "${50 + (i ? i * 1000 : 1)}",`,
+        `"fs command${i}": "appendFile", "fsTime": "${50 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
     }, 50 + (i ? i * 1000 : 1));
@@ -73,7 +73,7 @@ const commitMint = () => {
       console.log("git add: ", i);
       fs.appendFile(
         "log.json",
-        `"gitAdd": "add", "addTime": "${100 + (i ? i * 1000 : 1)}",`,
+        `"gitAdd${i}": "add", "addTime": "${100 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git add .\n`);
@@ -81,7 +81,9 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `"gitCommit": "commit", "commitTime": "${150 + (i ? i * 1000 : 1)}",`,
+        `"gitCommit${i}": "commit", "commitTime": "${
+          150 + (i ? i * 1000 : 1)
+        }",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
       execShellCommand(`git commit -m "${commitMessage}"\n`);
@@ -89,15 +91,9 @@ const commitMint = () => {
     setTimeout(() => {
       fs.appendFile(
         "log.json",
-        `"gitPush": "push", "pushTime": "${200 + (i ? i * 1000 : 1)}",`,
+        `"gitPush${i}": "push", "pushTime": "${200 + (i ? i * 1000 : 1)}"\n`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
-      if (i = loopLength) {
-          fs.appendFile("log.json", `"end": "true"}`, (error) =>
-            error ? console.log("git error: ", error) : false
-          );
-        console.log("if statement triggered: ",i)
-      }
       execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
   }
