@@ -7,8 +7,16 @@ let taskName = "CommitMint";
 let commitPrefix = "commit";
 let branchName = "bradley";
 
-fs.readFile("user.config","utf8",(err,data)=>{
-console.log(data)
+fs.readFileSync("user.config","utf8",(err,data)=>{
+  const fileContents = JSON.parse(data);
+  loopLength = fileContents.loopLength;
+  projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
+  runFrequency = fileContents.runFrequency;
+  runTime = fileContents.runTime;
+  taskName = fileContents.taskName;
+  commitPrefix = fileContents.commitPrefix;
+  branchName = fileContents.branchName;
+  //console.log(projectDirectory)
 })
 //runs the program
 const init = () => {
