@@ -92,7 +92,7 @@ const commitMint = () => {
         `"gitPush": "push", "pushTime": "${200 + (i ? i * 1000 : 1)}",`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
-      if (i = loopLength - 1) {
+      if (i = loopLength) {
           fs.appendFile("log.json", `"end": "true"}`, (error) =>
             error ? console.log("git error: ", error) : false
           );
