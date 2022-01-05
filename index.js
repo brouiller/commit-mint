@@ -95,13 +95,13 @@ const commitMint = () => {
       );
       execShellCommand(`git push --force origin bradley\n`);
     }, 200 + (i ? i * 1000 : 1));
-    if (i = loopLength - 1) {
-      setTimeout(() => {
-        fs.appendFile("log.json", `"end": "${250 + (i ? i * 1000 : 1)}"}`, (error) =>
-          error ? console.log("git error: ", error) : false
-        );
-      }, 250 + (i ? i * 1000 : 1));
-    }
+    // if (i = loopLength - 1) {
+    //   setTimeout(() => {
+    //     fs.appendFile("log.json", `"end": "${250 + (i ? i * 1000 : 1)}"}`, (error) =>
+    //       error ? console.log("git error: ", error) : false
+    //     );
+    //   }, 250 + (i ? i * 1000 : 1));
+    // }
   }
 };
 
