@@ -62,8 +62,8 @@ const commitMint = () => {
   for (let i = 0; i < loopLength; i++) {
 
     let commitMessage = `commit: ${i}`;
-    console.log(commitMessage);
     setTimeout(() => {
+      console.log("fs command: ",i);
       fs.appendFile(
         "log.json",
         `"fs command": "appendFile", "fsTime": "${50 + (i ? i * 1000 : 1)}",`,
@@ -71,6 +71,7 @@ const commitMint = () => {
       );
     }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
+      console.log("git add: ", i);
       fs.appendFile(
         "log.json",
         `"gitAdd": "add", "addTime": "${100 + (i ? i * 1000 : 1)}",`,
