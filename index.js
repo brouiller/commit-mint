@@ -11,16 +11,16 @@ let branchName = "bradley";
 const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
     const fileContents = JSON.parse(data);
-    loopLength = fileContents.loopLength;
-    projectDirectory = fileContents.projectDirectory.replace("\\", "\\\\");
+    loopLength = parseInt(fileContents.loopLength);
+    projectDirectory = fileContents.projectDirectory.replace(/\\/g,"\\\\");
     runFrequency = fileContents.runFrequency;
     runTime = fileContents.runTime;
     taskName = fileContents.taskName;
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
-    console.log("loopLength : ",loopLength);
+    console.log(typeof loopLength);
+    doesBatchFileExist();
   });
-  doesBatchFileExist();
 };
 
 //checks to see if the commands batch file exits, if it doesn't, it writes the file
@@ -76,6 +76,7 @@ const commitMint = () => {
   fs.writeFile("commitMint.txt", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
+  console.log("LoopLength: ", loopLength)
   for (let i = 0; i < loopLength; i++) {
     let commitMessage = `${commitPrefix}: ${i}`;
     setTimeout(() => {
