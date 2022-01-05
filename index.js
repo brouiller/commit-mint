@@ -1,13 +1,25 @@
 const fs = require("fs");
-let loopLength = 5;
+let loopLength = 2;
 let projectDirectory = "C:\\Users\\Bradley\\Documents\\projects\\commit-mint";
 let runFrequency = "DAILY";
 let runTime = "11:00";
 let taskName = "CommitMint";
 let commitPrefix = "commit";
 let branchName = "bradley";
+
 //runs the program
 const init = () => {
+  fs.readFile("config.json", "utf8", (err, data) => {
+    const fileContents = JSON.parse(data);
+    loopLength = fileContents.loopLength;
+    projectDirectory = fileContents.projectDirectory.replace("\\", "\\\\");
+    runFrequency = fileContents.runFrequency;
+    runTime = fileContents.runTime;
+    taskName = fileContents.taskName;
+    commitPrefix = fileContents.commitPrefix;
+    branchName = fileContents.branchName;
+    console.log("loopLength : ",loopLength);
+  });
   doesBatchFileExist();
 };
 
