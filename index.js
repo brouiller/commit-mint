@@ -19,8 +19,8 @@ const init = () => {
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
     console.log(typeof loopLength);
+    doesBatchFileExist();
   });
-  doesBatchFileExist();
 };
 
 //checks to see if the commands batch file exits, if it doesn't, it writes the file
