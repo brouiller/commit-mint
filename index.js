@@ -60,7 +60,7 @@ const commitMint = () => {
   );
   let loopLength = 5;
   for (let i = 0; i < loopLength; i++) {
-    console.log(i)
+    console.log(loopLength)
     let commitMessage = `commit: ${i}`;
     setTimeout(() => {
       fs.appendFile(
