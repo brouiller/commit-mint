@@ -8,7 +8,7 @@ let commitPrefix = "commit";
 let branchName = "bradley";
 
 fs.readFileSync("user.config","utf8",(err,data)=>{
-  console.error(err)
+  console.log(err)
   const fileContents = JSON.parse(data);
   loopLength = fileContents.loopLength;
   projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
