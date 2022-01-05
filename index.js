@@ -18,7 +18,7 @@ const init = () => {
     taskName = fileContents.taskName;
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
-    console.log(fileContents.loopLength);
+    console.log(typeof fileContents.loopLength);
   });
   doesBatchFileExist();
 };
