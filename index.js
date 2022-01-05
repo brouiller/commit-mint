@@ -12,13 +12,13 @@ const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
     const fileContents = JSON.parse(data);
     loopLength = fileContents.loopLength;
-    projectDirectory = fileContents.projectDirectory.replace("\\", "\\\\");
+    projectDirectory = fileContents.projectDirectory;
     runFrequency = fileContents.runFrequency;
     runTime = fileContents.runTime;
     taskName = fileContents.taskName;
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
-    console.log("loopLength : ",loopLength);
+    console.log("Project Dir : ",projectDirectory);
   });
   doesBatchFileExist();
 };
