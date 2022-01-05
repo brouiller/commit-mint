@@ -10,9 +10,9 @@ let branchName = "bradley";
 //runs the program
 const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
-    console.log(data)
+    //console.log(data)
     const fileContents = JSON.parse(data);
-    loopLength = fileContents.loopLength.value;
+    loopLength = fileContents.loopLength;
     projectDirectory = fileContents.projectDirectory.replace("\\", "\\\\");
     runFrequency = fileContents.runFrequency;
     runTime = fileContents.runTime;
