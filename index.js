@@ -76,6 +76,7 @@ const commitMint = () => {
   fs.writeFile("commitMint.txt", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
+  console.log("LoopLength: ", loopLength)
   for (let i = 0; i < loopLength; i++) {
     let commitMessage = `${commitPrefix}: ${i}`;
     setTimeout(() => {
