@@ -1,5 +1,5 @@
 const fs = require("fs");
-let loopLength = 5;
+let loopLength = 2;
 let projectDirectory = "C:\\Users\\Bradley\\Documents\\projects\\commit-mint";
 let runFrequency = "DAILY";
 let runTime = "11:00";
@@ -16,8 +16,8 @@ fs.readFileSync("user.config","utf8",(err,data)=>{
   taskName = fileContents.taskName;
   commitPrefix = fileContents.commitPrefix;
   branchName = fileContents.branchName;
-  //console.log(projectDirectory)
 })
+console.log(branchName)
 //runs the program
 const init = () => {
   doesBatchFileExist();
