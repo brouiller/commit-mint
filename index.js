@@ -6,9 +6,8 @@ let runTime = "11:00";
 let taskName = "CommitMint";
 let commitPrefix = "commit";
 let branchName = "bradley";
-
+try {
 fs.readFileSync("user.config","utf8",(err,data)=>{
-  console.log(err)
   const fileContents = JSON.parse(data);
   loopLength = fileContents.loopLength.value;
   projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
@@ -18,7 +17,8 @@ fs.readFileSync("user.config","utf8",(err,data)=>{
   commitPrefix = fileContents.commitPrefix;
   branchName = fileContents.branchName;
   console.log(loopLength)
-})
+})}
+catch (err){console.error("catch error: ",err)}
 //runs the program
 const init = () => {
   doesBatchFileExist();
