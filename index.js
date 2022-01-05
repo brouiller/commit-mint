@@ -59,7 +59,7 @@ const commitMint = () => {
     error ? console.log("git error: ", error) : false
   );
   let loopLength = 5;
-  for (let i = 0; i < loopLength; i++) {
+  for (let i = 0; i < 5; i++) {
     console.log(loopLength)
     let commitMessage = `commit: ${i}`;
     setTimeout(() => {
