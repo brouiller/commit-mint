@@ -6,21 +6,22 @@ let runTime = "11:00";
 let taskName = "CommitMint";
 let commitPrefix = "commit";
 let branchName = "bradley";
-try {
-fs.readFileSync("user.config","utf8",(err,data)=>{
-  const fileContents = JSON.parse(data);
-  loopLength = fileContents.loopLength.value;
-  projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
-  runFrequency = fileContents.runFrequency;
-  runTime = fileContents.runTime;
-  taskName = fileContents.taskName;
-  commitPrefix = fileContents.commitPrefix;
-  branchName = fileContents.branchName;
-  console.log(loopLength)
-})}
-catch (err){console.error("catch error: ",err)}
+
 //runs the program
 const init = () => {
+  try {
+    fs.readFileSync("user.config","utf8",(err,data)=>{
+      const fileContents = JSON.parse(data);
+      loopLength = fileContents.loopLength.value;
+      projectDirectory = fileContents.projectDirectory.replace("\\","\\\\");
+      runFrequency = fileContents.runFrequency;
+      runTime = fileContents.runTime;
+      taskName = fileContents.taskName;
+      commitPrefix = fileContents.commitPrefix;
+      branchName = fileContents.branchName;
+      console.log(loopLength)
+    })}
+    catch (err){console.error("catch error: ",err)}
   doesBatchFileExist();
 };
 
