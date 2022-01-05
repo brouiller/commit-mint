@@ -11,7 +11,7 @@ const button = document.getElementById("button");
 const writeConfig = () => {
     const configText = `{"loopLength": "${loopLength.value}","projectDirectory": "${projectDirectory.value}","runFrequency": "${runFrequency.value}","runTime": "${runTime.value}","taskName": "${taskName.value}","commitPrefix": "${commitPrefix.value}","branchName": "${branchName.value}"}`
     console.log(configText)
-    downloadToFile(configText,"user.config","text/plain")
+    downloadToFile(configText,"config.json","text/plain")
     }   
     const downloadToFile = (content, filename, contentType) => {
         const a = document.createElement('a');
