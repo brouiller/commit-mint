@@ -1,5 +1,11 @@
 const fs = require("fs");
-
+let loopLength = 5;
+let projectDirectory = "C:\\Users\\Bradley\\Documents\\projects\\commit-mint";
+let runFrequency = "DAILY";
+let runTime = "11:00";
+let taskName = "CommitMint";
+let commitPrefix = "commit";
+let branchName = "bradley";
 //runs the program
 const init = () => {
   doesBatchFileExist();
@@ -13,20 +19,20 @@ const doesBatchFileExist = () => {
     } else {
       fs.writeFile(
         "runNode.bat",
-        "@echo off\ncd C:\\Users\\Bradley\\Documents\\projects\\commit-mint\nnode index.js",
+        `@echo off\ncd ${projectDirectory}\nnode index.js`,
         (error) =>
           error ? console.log(error) : console.log("bat file created")
       );
       fs.writeFile(
         "run.vbs",
         `Set WshShell = CreateObject("WScript.Shell")\n
-        WshShell.Run chr(34) & "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\runNode.bat" & Chr(34), 0\n
+        WshShell.Run chr(34) & "${projectDirectory}\\runNode.bat" & Chr(34), 0\n
         Set WshShell = Nothing\n`,
         (error) =>
           error ? console.log(error) : console.log("vbs file created")
       );
       execShellCommand(
-        `SCHTASKS /CREATE /SC DAILY /TN "CommitMint" /TR "C:\\Users\\Bradley\\Documents\\projects\\commit-mint\\run.vbs" /ST 13:08\n`
+        `SCHTASKS /CREATE /SC ${runFrequency} /TN "${taskName}" /TR "${projectDirectory}\\run.vbs" /ST ${runTime}\n`
       );
     }
   } catch (err) {
@@ -58,9 +64,8 @@ const commitMint = () => {
   fs.writeFile("commitMint.txt", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
-  let loopLength = 2;
   for (let i = 0; i < loopLength; i++) {
-    let commitMessage = `commit: ${i}`;
+    let commitMessage = `${commitPrefix}: ${i}`;
     setTimeout(() => {
       console.log("fs command: ", i);
       fs.appendFile(
@@ -98,7 +103,7 @@ const commitMint = () => {
         }"\n`,
         (error) => (error ? console.log("git error: ", error) : false)
       );
-      execShellCommand(`git push --force origin bradley\n`);
+      execShellCommand(`git push --force origin ${branchName}\n`);
     }, 200 + (i ? i * 1000 : 1));
   }
 };
