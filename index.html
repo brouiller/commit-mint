@@ -14,6 +14,7 @@
     />
   </head>
   <body>
+    <img src="commit-mint.png" alt="commitMint" />
     <div class="container">
       <form method="post" id="form">
         <div class="mb-3">
@@ -23,7 +24,7 @@
             id="loopLength"
             placeholder="Loop Length"
             type="text"
-          >
+          />
         </div>
         <div class="mb-3">
           <label class="form-label" for="projectDir">Project Directory</label>
@@ -31,8 +32,8 @@
             class="form-control"
             id="projectDir"
             placeholder="Project Directory"
-            type="text"
-          >
+            type="file"
+          />
         </div>
         <div class="mb-3">
           <label class="form-label" for="runFreq">Run Frequency</label>
@@ -50,7 +51,7 @@
             id="runTime"
             placeholder="Run Time"
             type="time"
-          >
+          />
         </div>
         <div class="mb-3">
           <label class="form-label" for="taskName">Task Name</label>
@@ -59,7 +60,7 @@
             id="taskName"
             placeholder="Task Name"
             type="text"
-          >
+          />
         </div>
         <div class="mb-3">
           <label class="form-label" for="commitPrefix">Commit Prefix</label>
@@ -68,7 +69,7 @@
             id="commitPrefix"
             placeholder="Commit Prefix"
             type="text"
-          >
+          />
         </div>
         <div class="mb-3">
           <label class="form-label" for="branchName">Branch Name</label>
@@ -77,7 +78,7 @@
             id="branchName"
             placeholder="Branch Name"
             type="text"
-            >
+          />
         </div>
         <div class="mb-3">
           <button id="button" class="btn btn-primary">Submit</button>
@@ -85,7 +86,11 @@
       </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="client.js"></script>
   </body>
 </html>
