@@ -1,13 +1,16 @@
+// library used to read and write files
 const fs = require("fs");
-let loopLength = 2;
-let projectDirectory = "C:\\Users\\Bradley\\Documents\\projects\\commit-mint";
+
+// default variables
+let loopLength = 1;
+let projectDirectory = "";
 let runFrequency = "DAILY";
 let runTime = "11:00";
 let taskName = "CommitMint";
 let commitPrefix = "commit";
-let branchName = "bradley";
+let branchName = "main";
 
-//runs the program
+//reads the config file to set variables and runs function to check whether necessary files have been created
 const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
     const fileContents = JSON.parse(data);
@@ -19,23 +22,23 @@ const init = () => {
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
     console.log(typeof loopLength);
-    doesBatchFileExist();
+    doFilesExist();
   });
 };
 
-//checks to see if the commands batch file exits, if it doesn't, it writes the file
-const doesBatchFileExist = () => {
+//checks to see if the bat and vbs files exits, if they don't, it writes the vbs and bat files
+const doFilesExist = () => {
   try {
-    if (fs.existsSync("runNode.bat")) {
+    if (fs.existsSync("runNode.bat") && fs.existsSync("run.vbs")) {
       commitMint();
     } else {
-      fs.writeFile(
+      fs.writeFile( //this is the file that runs the index.js file in node in the appropriate directory
         "runNode.bat",
         `@echo off\ncd ${projectDirectory}\nnode index.js`,
         (error) =>
           error ? console.log(error) : console.log("bat file created")
       );
-      fs.writeFile(
+      fs.writeFile( //this file that task scheduler runs and makes it so that the batch file is run in the background instead of in a command prompt
         "run.vbs",
         `Set WshShell = CreateObject("WScript.Shell")\n
         WshShell.Run chr(34) & "${projectDirectory}\\runNode.bat" & Chr(34), 0\n
@@ -43,7 +46,7 @@ const doesBatchFileExist = () => {
         (error) =>
           error ? console.log(error) : console.log("vbs file created")
       );
-      execShellCommand(
+      execShellCommand( //this command schedules the task
         `SCHTASKS /CREATE /SC ${runFrequency} /TN "${taskName}" /TR "${projectDirectory}\\run.vbs" /ST ${runTime}\n`
       );
     }
@@ -69,8 +72,8 @@ const execShellCommand = (cmd) => {
   });
 };
 
-// const formatDate = Date(Date.now().toLocaleString);
-//runs the loop
+//writes a log file (overwrites if it already exists) and appends new information each time the loop runs so that
+//there are changes to commit and push
 const commitMint = () => {
   let logFileText = `"date": "${Date(Date.now().toLocaleString)}",`;
   fs.writeFile("commitMint.txt", logFileText, (error) =>
