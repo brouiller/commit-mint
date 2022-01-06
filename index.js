@@ -1,6 +1,5 @@
 // library used to read and write files
 const fs = require("fs");
-
 // default variables
 let loopLength = 1;
 let projectDirectory = "";
@@ -9,7 +8,6 @@ let runTime = "11:00";
 let taskName = "CommitMint";
 let commitPrefix = "commit";
 let branchName = "main";
-
 //reads the config file to set variables and runs function to check whether necessary files have been created
 const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
@@ -21,24 +19,24 @@ const init = () => {
     taskName = fileContents.taskName;
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
-    console.log(typeof loopLength);
     doFilesExist();
   });
 };
-
 //checks to see if the bat and vbs files exits, if they don't, it writes the vbs and bat files
 const doFilesExist = () => {
   try {
     if (fs.existsSync("runNode.bat") && fs.existsSync("run.vbs")) {
       commitMint();
     } else {
-      fs.writeFile( //this is the file that runs the index.js file in node in the appropriate directory
+      fs.writeFile(
+        //this is the file that runs the index.js file in node in the appropriate directory
         "runNode.bat",
         `@echo off\ncd ${projectDirectory}\nnode index.js`,
         (error) =>
           error ? console.log(error) : console.log("bat file created")
       );
-      fs.writeFile( //this file that task scheduler runs and makes it so that the batch file is run in the background instead of in a command prompt
+      fs.writeFile(
+        //this file that task scheduler runs and makes it so that the batch file is run in the background instead of in a command prompt
         "run.vbs",
         `Set WshShell = CreateObject("WScript.Shell")\n
         WshShell.Run chr(34) & "${projectDirectory}\\runNode.bat" & Chr(34), 0\n
@@ -46,7 +44,8 @@ const doFilesExist = () => {
         (error) =>
           error ? console.log(error) : console.log("vbs file created")
       );
-      execShellCommand( //this command schedules the task
+      execShellCommand(
+        //this command schedules the task
         `SCHTASKS /CREATE /SC ${runFrequency} /TN "${taskName}" /TR "${projectDirectory}\\run.vbs" /ST ${runTime}\n`
       );
     }
@@ -54,7 +53,6 @@ const doFilesExist = () => {
     console.error(err);
   }
 };
-
 //creates a child process for running shell commands
 const execShellCommand = (cmd) => {
   const exec = require("child_process").exec;
@@ -71,7 +69,6 @@ const execShellCommand = (cmd) => {
     });
   });
 };
-
 //writes a log file (overwrites if it already exists) and appends new information each time the loop runs so that
 //there are changes to commit and push
 const commitMint = () => {
@@ -79,11 +76,9 @@ const commitMint = () => {
   fs.writeFile("commitMint.txt", logFileText, (error) =>
     error ? console.log("git error: ", error) : false
   );
-  console.log("LoopLength: ", loopLength)
   for (let i = 0; i < loopLength; i++) {
     let commitMessage = `${commitPrefix}: ${i}`;
     setTimeout(() => {
-      console.log("fs command: ", i);
       fs.appendFile(
         "commitMint.txt",
         `"fs command${i}": "appendFile", "fsTime${i}": "${
@@ -93,7 +88,6 @@ const commitMint = () => {
       );
     }, 50 + (i ? i * 1000 : 1));
     setTimeout(() => {
-      console.log("git add: ", i);
       fs.appendFile(
         "commitMint.txt",
         `"gitAdd${i}": "add", "addTime${i}": "${100 + (i ? i * 1000 : 1)}",`,
@@ -123,5 +117,4 @@ const commitMint = () => {
     }, 200 + (i ? i * 1000 : 1));
   }
 };
-
 init();
