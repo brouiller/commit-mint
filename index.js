@@ -12,7 +12,7 @@ const init = () => {
   fs.readFile("config.json", "utf8", (err, data) => {
     const fileContents = JSON.parse(data);
     loopLength = parseInt(fileContents.loopLength);
-    projectDirectory = fileContents.projectDirectory.replace(/\\/g,"\\\\");
+    projectDirectory = fileContents.projectDirectory;
     runFrequency = fileContents.runFrequency;
     runTime = fileContents.runTime;
     taskName = fileContents.taskName;
