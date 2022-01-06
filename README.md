@@ -37,6 +37,7 @@ A program to keep your GitHub contribution map green.
 ## Usage
 
 Used to keep your GitHub contribution map green
+* if you need to run a second time, you must delete "runNode.bat" & "run.vbs".
 
 ## Contributing
 
