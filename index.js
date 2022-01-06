@@ -1,6 +1,6 @@
 const fs = require("fs");
 let loopLength = 3;
-let projectDirectory = "C:\\Users\\Pkeld\\Desktop\\commit-mint";
+let projectDirectory = `C:\Users\Pkeld\Desktop\commit-mint`;
 let runFrequency = "DAILY";
 let runTime = "11:00";
 let taskName = "CommitMint";
