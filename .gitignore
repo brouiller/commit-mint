@@ -105,3 +105,6 @@ dist
 
 # batch files
 *.bat
+
+# vbs files
+*.vbs
