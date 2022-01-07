@@ -108,3 +108,6 @@ dist
 
 # vbs files
 *.vbs
+
+# config file
+config.json
