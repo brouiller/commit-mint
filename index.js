@@ -20,7 +20,7 @@ const init = () => {
     commitPrefix = fileContents.commitPrefix;
     branchName = fileContents.branchName;
     if (loopLength > 5) {
-      loopLength = Math.round((loopLength * Math.random())) + (loopLength/2)
+      loopLength = Math.round((loopLength * Math.random())) + Math.round((loopLength / 2));
     }
     doFilesExist();
   });
