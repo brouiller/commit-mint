@@ -14,4 +14,5 @@
 "fs command13": "appendFile", "fsTime13": "13050","gitAdd13": "add", "addTime13": "13100","gitCommit13": "commit", "commitTime13": "13150","gitPush13": "push", "pushTime13": "13200"
 "fs command14": "appendFile", "fsTime14": "14050","gitAdd14": "add", "addTime14": "14100","gitCommit14": "commit", "commitTime14": "14150","gitPush14": "push", "pushTime14": "14200"
 "fs command15": "appendFile", "fsTime15": "15050","gitAdd15": "add", "addTime15": "15100","gitCommit15": "commit", "commitTime15": "15150","gitPush15": "push", "pushTime15": "15200"
-"fs command16": "appendFile", "fsTime16": "16050","gitAdd16": "add", "addTime16": "16100",
+"fs command16": "appendFile", "fsTime16": "16050","gitAdd16": "add", "addTime16": "16100","gitCommit16": "commit", "commitTime16": "16150","gitPush16": "push", "pushTime16": "16200"
+"fs command17": "appendFile", "fsTime17": "17050","gitAdd17": "add", "addTime17": "17100",
