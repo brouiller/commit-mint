@@ -8,4 +8,5 @@
 "fs command7": "appendFile", "fsTime7": "7050","gitAdd7": "add", "addTime7": "7100","gitCommit7": "commit", "commitTime7": "7150","gitPush7": "push", "pushTime7": "7200"
 "fs command8": "appendFile", "fsTime8": "8050","gitAdd8": "add", "addTime8": "8100","gitCommit8": "commit", "commitTime8": "8150","gitPush8": "push", "pushTime8": "8200"
 "fs command9": "appendFile", "fsTime9": "9050","gitAdd9": "add", "addTime9": "9100","gitCommit9": "commit", "commitTime9": "9150","gitPush9": "push", "pushTime9": "9200"
-"fs command10": "appendFile", "fsTime10": "10050","gitAdd10": "add", "addTime10": "10100",
+"fs command10": "appendFile", "fsTime10": "10050","gitAdd10": "add", "addTime10": "10100","gitCommit10": "commit", "commitTime10": "10150","gitPush10": "push", "pushTime10": "10200"
+"fs command11": "appendFile", "fsTime11": "11050","gitAdd11": "add", "addTime11": "11100",
